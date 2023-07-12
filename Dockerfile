@@ -1,3 +1,8 @@
+FROM ubuntu:latest
+LABEL authors="Socheata"
+
+ENTRYPOINT ["top", "-b"]
+
 FROM openjdk:17 AS build
 WORKDIR /app
 COPY . /app/
