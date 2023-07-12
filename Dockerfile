@@ -16,7 +16,7 @@ RUN bash -c "source /root/.sdkman/bin/sdkman-init.sh && sdk install gradle"
 FROM openjdk:17 AS build
 WORKDIR /app
 COPY . /app/
-RUN apk update && apk add --no-cache curl
+RUN apt-get update && apt-get install -y curl
 RUN curl -s "https://get.sdkman.io" | bash
 RUN bash -c "source /root/.sdkman/bin/sdkman-init.sh && sdk install gradle"
 RUN ./gradlew clean build
@@ -24,7 +24,7 @@ RUN ./gradlew clean build
 #
 # Package stage
 #
-FROM openjdk:17-alpine
+FROM openjdk:17
 WORKDIR /app
 COPY --from=build /app/build/libs/*.jar /app/app.jar
 EXPOSE 5432
