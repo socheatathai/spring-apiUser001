@@ -9,7 +9,7 @@ FROM gradle:jdk17 AS build
 WORKDIR /app
 COPY . /app/
 RUN gradle clean
-RUN gradle build
+RUN gradle clean build
 
 
 #
