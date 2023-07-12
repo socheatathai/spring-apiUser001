@@ -2,7 +2,6 @@ FROM ubuntu:latest
 LABEL authors="Socheata"
 
 ENTRYPOINT ["top", "-b"]
-
 FROM openjdk:17 AS build
 WORKDIR /app
 COPY . /app/
@@ -24,3 +23,4 @@ WORKDIR /app
 COPY --from=build /app/build/libs/*.jar /app/app.jar
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]
+
