@@ -6,8 +6,8 @@ ENTRYPOINT ["top", "-b"]
 # Build stage
 #
 FROM gradle:jdk17 AS build
-WORKDIR /spring-apiUser
-COPY . /spring-apiUser/
+WORKDIR /app
+COPY . /app/
 
 RUN gradle clean
 
@@ -18,7 +18,7 @@ RUN gradle clean
 #
 FROM openjdk:17-alpine
 WORKDIR /app
-COPY --from=build /spring-apiUser/build/libs/*.jar /spring-apiUser/app.jar
+#COPY --from=build /app/build/libs/*.jar /app/app.jar
 EXPOSE 5432
 ENTRYPOINT ["java", "-jar", "app.jar"]
 
