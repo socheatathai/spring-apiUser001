@@ -8,7 +8,7 @@ ENTRYPOINT ["top", "-b"]
 FROM gradle:jdk17 AS build
 WORKDIR /app
 COPY . /app/
-RUN gradle --version
+
 RUN gradle build
 RUN gradle clean
 
