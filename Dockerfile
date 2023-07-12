@@ -5,7 +5,7 @@ ENTRYPOINT ["top", "-b"]
 #
 # Build stage
 #
-FROM gradle:7.1.1-jdk17 AS build
+FROM gradle:3.1.1-jdk17 AS build
 WORKDIR /app
 COPY . /app/
 RUN gradle clean build
