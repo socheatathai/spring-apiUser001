@@ -9,6 +9,7 @@ FROM gradle:jdk17 AS build
 WORKDIR /app
 COPY . /app/
 RUN gradle clean
+RUN gradle build
 
 
 #
@@ -16,7 +17,7 @@ RUN gradle clean
 #
 FROM openjdk:17-alpine
 WORKDIR /app
-COPY  /app/libs/*.jar /app/app.jar
+COPY --from=build /app/build/libs/*.jar /app/app.jar
 EXPOSE 5432
 ENTRYPOINT ["java", "-jar", "app.jar"]
 
