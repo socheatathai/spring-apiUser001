@@ -18,7 +18,7 @@ RUN gradle clean
 #
 FROM openjdk:17-alpine
 WORKDIR /app
-COPY --from=build /app/build/libs/ /app/app.jar
+COPY --from=build /app/build/* /app/app.jar
 EXPOSE 5432
 ENTRYPOINT ["java", "-jar", "app.jar"]
 
